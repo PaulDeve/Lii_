@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Lii &lt;3</title>
+<meta name="description" content="Un pequeño espacio hecho por Pausito para Lii." />
+
+<!-- Google Fonts: Fraunces (display, con carácter) + Plus Jakarta Sans (texto limpio) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- CAMPO DE ESTRELLAS DE FONDO (persistente, canvas)             -->
+<!-- ============================================================ -->
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- ============================================================ -->
+<!-- PANTALLA INICIAL                                              -->
+<!-- ============================================================ -->
+<section id="intro" class="intro-screen" aria-label="Pantalla de bienvenida">
+  <div class="intro-content">
+    <p class="intro-eyebrow" data-reveal>oyeeee</p>
+    <h1 class="intro-title" data-reveal>Lii <span class="heart-inline"></span></h1>
+    <p class="intro-sub" data-reveal>Te muestro algo que hice</p>
+    <button class="btn btn-primary intro-btn" id="enter-btn" data-reveal>
+      Entrar <span aria-hidden="true">✨</span>
+    </button>
+    <p class="intro-footnote" data-reveal>No prometo que esto tenga sentido&hellip; pero lo hice para ti</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CONTENIDO PRINCIPAL (oculto hasta pulsar "Entrar")            -->
+<!-- ============================================================ -->
+<main id="main-content" class="main-content" hidden>
+
+  <!-- Botón flotante de música -->
+  <button id="music-toggle" class="music-btn" aria-pressed="false" aria-label="Reproducir música">
+    <span class="music-icon" aria-hidden="true">♫</span>
+    <span class="music-label">Música</span>
+  </button>
+
+  <!-- Indicador de progreso de la misión (elemento firma: un pequeño astronauta que recorre la barra lateral) -->
+  <div class="mission-track" aria-hidden="true">
+    <div class="mission-line"></div>
+    <div class="mission-astronaut" id="mission-astronaut">🧑‍🚀</div>
+  </div>
+
+  <!-- Contador removido por solicitud del usuario -->
+
+  <!-- ========================================================== -->
+  <!-- SECCIÓN 1 — PEQUEÑAS COSAS QUE ME GUSTAN DE TI              -->
+  <!-- ========================================================== -->
+  <section class="story-section" id="sec-likes" data-section>
+    <div class="section-head" data-reveal>
+      <h2 class="section-title">¿Sabes qué me gusta de ti?</h2>
+      <p class="section-hint">tócalas, va</p>
+    </div>
+
+    <div class="flip-grid" id="likes-grid">
+      <button class="flip-card" data-flip aria-expanded="false">
+        <span class="flip-inner">
+          <span class="flip-front">
+            <span class="flip-icon" aria-hidden="true">😄</span>
+            <span class="flip-title">Tu forma de ser</span>
+          </span>
+          <span class="flip-back">Porque puedes estar cansada, estresada o teniendo un día horrible y aun así encuentras alguna forma de hacerme reír</span>
+        </span>
+      </button>
+
+      <button class="flip-card" data-flip aria-expanded="false">
+        <span class="flip-inner">
+          <span class="flip-front">
+            <span class="flip-icon" aria-hidden="true">🧣</span>
+            <span class="flip-title">Tu forma de cuidar</span>
+          </span>
+          <span class="flip-back">Siempre me dices que me cuide, que tome agua, que me abrigue&hellip; y no sé en qué momento eso empezó a sentirse tan bonito</span>
+        </span>
+      </button>
+
+      <button class="flip-card" data-flip aria-expanded="false">
+        <span class="flip-inner">
+          <span class="flip-front">
+            <span class="flip-icon" aria-hidden="true">🐾</span>
+            <span class="flip-title">Tu lado veterinario</span>
+          </span>
+          <span class="flip-back">Me gusta escucharte hablar de los animalitos y de tu carrera. Se nota que realmente te importa lo que haces</span>
+        </span>
+      </button>
+
+      <!-- Tarjetas reducidas: solo las tres más importantes -->
+    </div>
+    <a href="#sec-astro" class="scroll-hint" data-nav-next aria-label="Continuar">sigueee <span aria-hidden="true">↓</span></a>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- SECCIÓN 2 — EL ASTRONAUTA                                    -->
+  <!-- ========================================================== -->
+  <section class="story-section astro-section" id="sec-astro" data-section>
+    <div class="astro-sky" aria-hidden="true">
+      <div class="moon"></div>
+    </div>
+
+    <div class="astro-content" data-reveal>
+      <p class="astro-astronaut" id="astro-emoji" aria-hidden="true">🧑‍🚀</p>
+
+      <p class="astro-text astro-step" data-step="1">Lii, tengo que confesarte algo&hellip;</p>
+      <p class="astro-text astro-step" data-step="2" hidden>Ya me compré mi traje de astronauta</p>
+
+      <button class="btn btn-ghost astro-btn" id="astro-why-btn" data-step="1">Por que? <span aria-hidden="true">👀</span></button>
+
+      <p class="astro-text astro-step astro-reveal" data-step="3" hidden>Porque solo me falta un espacio&hellip;</p>
+      <p class="astro-text astro-big astro-step" data-step="4" hidden>en tu corazón. <span aria-hidden="true">❤️</span></p>
+      <p class="astro-text astro-small astro-step" data-step="4" hidden>Prometo no ocupar demasiado espacio&hellip; aunque no garantizo nada u.u</p>
+
+      <button class="btn btn-primary astro-btn" id="astro-back-btn" data-step="4" hidden>Volver a la Tierra <span aria-hidden="true">🌎</span></button>
+    </div>
+    <a href="#sec-list" class="scroll-hint" data-nav-next aria-label="Continuar" id="astro-next-hint" hidden>okeyyy, sigue bajando <span aria-hidden="true">↓</span></a>
+  </section>
+
+  <!-- Sección del manual eliminada por solicitud del usuario -->
+
+  <!-- Sección del diagnóstico eliminada por solicitud del usuario -->
+
+  <!-- ========================================================== -->
+  <!-- SECCIÓN 5 — COSAS QUE QUIERO HACER CONTIGO                  -->
+  <!-- ========================================================== -->
+  <section class="story-section" id="sec-list" data-section>
+    <div class="glass-card todo-card" data-reveal>
+      <h2 class="section-title">Tenemos pendientes&hellip;</h2>
+
+      <ul class="todo-list" id="todo-list">
+        <li><label><input type="checkbox" data-todo /><span>Ver una película juntos</span></label></li>
+        <li><label><input type="checkbox" data-todo /><span>Tener una conversación que dure horas</span></label></li>
+        <li><label><input type="checkbox" data-todo /><span>Hacerte reír cuando estés estresada</span></label></li>
+        <li><label><input type="checkbox" data-todo /><span>Conocer más de tu mundo...</span></label></li>
+        <li><label><input type="checkbox" data-todo /><span>Crear recuerdos que luego nos hagan decir "te acuerdas de eso?"</span></label></li>
+        <li><label><input type="checkbox" data-todo /><span>Y muchas cosas que aun no hemos planeado</span></label></li>
+      </ul>
+
+      <p class="todo-complete" id="todo-complete" hidden>
+        <strong>Misión desbloqueada.</strong><br>
+        Ahora solo falta hacerlo realidad &lt;3
+      </p>
+    </div>
+    <a href="#sec-letter" class="scroll-hint" data-nav-next aria-label="Continuar">falta poquito <span aria-hidden="true">↓</span></a>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- SECCIÓN 6 — COSAS QUE NUNCA TE DIJE (carta typewriter)       -->
+  <!-- ========================================================== -->
+  <section class="story-section" id="sec-letter" data-section>
+    <div class="glass-card letter-card" data-reveal>
+      <h2 class="section-title">Cosas que nunca te dije</h2>
+      <div class="letter-body" id="letter-body" aria-live="polite"></div>
+      <button class="btn btn-ghost letter-skip" id="letter-skip">Mostrar todo</button>
+    </div>
+    <a href="#sec-final" class="scroll-hint" data-nav-next aria-label="Continuar">una más <span aria-hidden="true">↓</span></a>
+  </section>
+
+  <!-- Sección de "botón trampa" eliminada por solicitud del usuario -->
+
+  <!-- ========================================================== -->
+  <!-- SECCIÓN 8 — FINAL                                            -->
+  <!-- ========================================================== -->
+  <section class="story-section final-section" id="sec-final" data-section>
+    <div class="astro-sky" aria-hidden="true"><div class="moon moon-small"></div></div>
+    <p class="final-astronaut" aria-hidden="true">🧑‍🚀</p>
+
+    <h2 class="final-title">Fin de la misión <span aria-hidden="true">🚀</span></h2>
+    <div class="final-typewriter" id="final-typewriter" aria-live="polite"></div>
+
+    <p class="final-love" id="final-love" hidden>Te quiero mucho, Lii. <span aria-hidden="true">❤️</span></p>
+    <p class="final-sign" id="final-sign" hidden>&mdash;</p>
+
+    <button class="btn btn-ghost restart-btn" id="restart-btn" hidden>Volver a empezar <span aria-hidden="true">↻</span></button>
+
+    <!-- Easter egg casi escondido -->
+    <button class="easter-egg-btn" id="easter-egg" aria-label="No tocar">No tocar <span aria-hidden="true">👀</span></button>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- OVERLAY DEL EASTER EGG                                        -->
+<!-- ============================================================ -->
+<div class="easter-overlay" id="easter-overlay" hidden>
+  <p class="easter-text" id="easter-text"></p>
+</div>
+
+<!-- Audio oculto: solo se usa por JS, sin mostrar la interfaz del navegador -->
+<audio id="bg-music" loop preload="none" controls style="display: none;">
+  <source src="Labios Rotos.mp3" type="audio/mpeg" />
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
